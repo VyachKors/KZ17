@@ -5,7 +5,7 @@ export class Worker extends Person {
     #rate = 1000; // Приватное свойство, ставка за день работы, по умолчанию 1000
     #days = 0; // Приватное свойство, отработанные дни за месяц, по умолчанию 0
     constructor(firstName, lastName, birthDate, position) {
-        super(firstName, lastName);
+        super(firstName, lastName, birthDate);
         // Разбираем строку в формате "мм-дд-гггг"
         const [month, day, year] = birthDate.split('-').map(Number);
         this.#birthDate = new Date(year, month - 1, day); // Учитываем, что месяц в объекте Date считается от 0

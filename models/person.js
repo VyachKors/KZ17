@@ -20,7 +20,6 @@ export class Person {
         console.log(`this.#birthday: ${this.#birthday}`);
         const birthDate = new Date(this.#birthday);
         const today = new Date();
-        console.log(`birthDate: ${birthDate}, today: ${today}`); // Отладочное сообщение
 
         let age = today.getFullYear() - birthDate.getFullYear();
         const monthDiff = today.getMonth() - birthDate.getMonth();
