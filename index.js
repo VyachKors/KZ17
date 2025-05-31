@@ -8,7 +8,7 @@ const worker3 = new Worker('Jim', 'Brown', '12-15-1975', 'Manager');
 const worker4 = new Worker('Alice', 'Johnson', '03-12-1992', 'Analyst');
 const worker5 = new Worker('Bob', 'Davis', '08-05-1988', 'Developer');
 
-console.log(worker1.getAge());
+console.log(worker1.getAgeString());
 
 // Меняем ставку в день для троих работников
 worker1.rate = 1200;
@@ -42,4 +42,4 @@ Worker.whoIsYounger(worker1, worker2, worker3, worker4, worker5);
 
 // Проверка работоспособности getAge
 const person1 = new Person('Jo', 'Bee', '11-05-1974', 'Engineer');
-person1.getAge();
+person1.getAgeNumber();

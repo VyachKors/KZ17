@@ -86,8 +86,40 @@ export class Worker extends Person {
     // Статический метод для нахождения самого младшего работника
 
 
+    // static whoIsYounger(...workers) {
+    //     console.log(workers);
+    //     if (workers.length === 0) {
+    //         console.log('Нет данных о работниках.');
+    //         return;
+    //     }
+    //
+    //     let minAge = Infinity;
+    //     let youngestWorkers = [];
+    //
+    //     for (const worker of workers) {
+    //         const ageStr = worker.getAge();
+    //         const ageMatch = ageStr.match(/\d+/);
+    //
+    //         if (ageMatch === null) {
+    //             console.error(`Не удалось извлечь возраст из строки: ${ageStr}`);
+    //             continue;
+    //         }
+    //
+    //         const age = parseInt(ageMatch[0]); // Извлекаем число из строки с возрастом
+    //
+    //         if (age < minAge) {
+    //             minAge = age;
+    //             youngestWorkers = [worker];
+    //         } else if (age === minAge) {
+    //             youngestWorkers.push(worker);
+    //         }
+    //     }
+    //
+    //     const info = youngestWorkers.map(worker => `${worker.getFullName()} ${worker.getAge()}`);
+    //     console.log(info.join('; '));
+    // }
+
     static whoIsYounger(...workers) {
-        console.log(workers);
         if (workers.length === 0) {
             console.log('Нет данных о работниках.');
             return;
@@ -97,15 +129,11 @@ export class Worker extends Person {
         let youngestWorkers = [];
 
         for (const worker of workers) {
-            const ageStr = worker.getAge();
-            const ageMatch = ageStr.match(/\d+/);
-
-            if (ageMatch === null) {
-                console.error(`Не удалось извлечь возраст из строки: ${ageStr}`);
+            const age = worker.getAgeNumber();
+            if (typeof age !== 'number' || isNaN(age)) {
+                console.error('Не удалось получить числовой возраст для: ${worker.getFullName()}');
                 continue;
             }
-
-            const age = parseInt(ageMatch[0]); // Извлекаем число из строки с возрастом
 
             if (age < minAge) {
                 minAge = age;
@@ -115,9 +143,9 @@ export class Worker extends Person {
             }
         }
 
-        const info = youngestWorkers.map(worker => `${worker.getFullName()} ${worker.getAge()}`);
+        const info = youngestWorkers.map(worker =>
+            `${worker.getFullName()} ${worker.getAgeString()}`
+        );
         console.log(info.join('; '));
     }
-
-
 }
